@@ -1,0 +1,21 @@
+install:
+  mode: create
+  networks:
+    harvester-mgmt:       # The management bond name. This is mandatory.
+      interfaces:
+      - name: enp1s0
+      method: static
+      ip: 10.0.0.221
+      subnet_mask: 255.0.0.0
+      gateway: 10.0.0.1
+      bond_options:
+        mode: balance-tlb
+        miimon: 100
+      mtu: 1492
+    harvester-vlan:       # The VLAN network bond name. User can then input `harvester-vlan` in the VLAN NIC setting in the GUI.
+      interfaces:
+      - name: enp2so
+      method: none
+      bond_options:
+        mode: balance-tlb
+        miimon: 100
